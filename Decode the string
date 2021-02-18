@@ -1,0 +1,98 @@
+
+https://practice.geeksforgeeks.org/problems/decode-the-string2444/1/?category[]=Backtracking&category[]=Backtracking&page=1&query=category[]Backtrackingpage1category[]Backtracking
+
+    string decodedString(string s){
+        // code here
+        stack<string>s1;
+        stack<int>s2;
+        for(int i=0;i<s.length();i++)
+        {
+            string num="";
+            while(i<s.length() && s[i]>='0' && s[i]<='9')
+            {
+                num+=s[i];
+                i++;
+            }
+            if(num.length()>0)
+                s2.push(stoi(num));
+            if(i>=s.length())
+                break;
+            else if(s[i]=='[')
+                s1.push("[");
+            else if(s[i]>='a' && s[i]<='z'){
+                if(s[i]=='a')
+                    s1.push("a");
+                if(s[i]=='b')
+                    s1.push("b");
+                if(s[i]=='c')
+                    s1.push("c");
+                if(s[i]=='d')
+                    s1.push("d");
+                if(s[i]=='e')
+                    s1.push("e");
+                if(s[i]=='f')
+                    s1.push("f");
+                if(s[i]=='g')
+                    s1.push("g");
+                if(s[i]=='h')
+                    s1.push("h");
+                if(s[i]=='i')
+                    s1.push("i");
+                if(s[i]=='j')
+                    s1.push("j");
+                if(s[i]=='k')
+                    s1.push("k");
+                if(s[i]=='l')
+                    s1.push("l");
+                if(s[i]=='m')
+                    s1.push("m");
+                if(s[i]=='n')
+                    s1.push("n");
+                if(s[i]=='o')
+                    s1.push("o");
+                if(s[i]=='p')
+                    s1.push("p");
+                if(s[i]=='q')
+                    s1.push("q");
+                if(s[i]=='r')
+                    s1.push("r");
+                if(s[i]=='s')
+                    s1.push("s");
+                if(s[i]=='t')
+                    s1.push("t");
+                if(s[i]=='u')
+                    s1.push("u");
+                if(s[i]=='v')
+                    s1.push("v");
+                if(s[i]=='w')
+                    s1.push("w");
+                if(s[i]=='x')
+                    s1.push("x");
+                if(s[i]=='y')
+                    s1.push("y");
+                if(s[i]=='z')
+                    s1.push("z");
+            }
+            else
+            {
+                string str="";
+                while(s1.top()!="[")
+                {
+                    str+=s1.top();
+                    s1.pop();
+                }
+                s1.pop();
+                int count=s2.top();
+                s2.pop();
+                string str1=str;
+                for(int j=1;j<count;j++)
+                    str+=str1;
+                s1.push(str);
+            }
+        }
+        string ans=s1.top();
+        s1.pop();
+        reverse(ans.begin(),ans.end());
+        return ans;
+        
+    }
