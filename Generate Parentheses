@@ -1,0 +1,34 @@
+https://practice.geeksforgeeks.org/problems/generate-all-possible-parentheses/1/?category[]=Backtracking&category[]=Backtracking&page=1&query=category[]Backtrackingpage1category[]Backtracking
+
+bool isValidMove(int open,int close)
+{
+    if(open<=close)
+        return false;
+    return true;
+}
+void generateParenthesis(string str,int open,int close,int n,vector<string>&v)
+{
+    if(str.length()==(2*n) &&open==n && close==n)
+    {
+        v.push_back(str);
+        return ;
+    }
+    if(str.length()==(2*n))
+    {
+        return ;
+    }
+    // if(open==n+1||close==n+1)
+    //     return ;
+    
+    generateParenthesis(str+"(",open+1,close,n,v);
+    if(isValidMove(open,close))
+        generateParenthesis(str+")",open,close+1,n,v);
+    
+}
+vector<string> AllParenthesis(int n) 
+{
+    // Your code goes here 
+    vector<string>v;
+    generateParenthesis("",0,0,n,v);
+    return v;
+}
