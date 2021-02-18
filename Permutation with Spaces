@@ -1,0 +1,24 @@
+https://practice.geeksforgeeks.org/problems/permutation-with-spaces3627/1/?category[]=Backtracking&category[]=Backtracking&page=1&query=category[]Backtrackingpage1category[]Backtracking
+
+    void permutationRec(string str,vector<string>&v,int i,string ans,int n)
+    {
+        if(i==n)
+        {
+            v.push_back(ans);
+            return ;
+        }
+        if(i==0){
+            permutationRec(str,v,i+1,ans+str[i],n);
+        }
+        else{
+            permutationRec(str,v,i+1,ans+" "+str[i],n);
+            permutationRec(str,v,i+1,ans+str[i],n);            
+        }
+    }
+
+    vector<string> permutation(string S){
+        // Code Here
+        vector<string>v;
+        permutationRec(S,v,0,"",S.length());
+        return v;
+    }
