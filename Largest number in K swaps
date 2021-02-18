@@ -1,0 +1,35 @@
+https://practice.geeksforgeeks.org/problems/largest-number-in-k-swaps-1587115620/1/?category[]=Backtracking&category[]=Backtracking&page=1&query=category[]Backtrackingpage1category[]Backtracking
+
+void findMaxRec(string str,string sortedstr,int i,int n,int k,vector<string>&v)
+{
+    if(i==n||k==0)
+    {
+        // cout<<str<<endl;
+        v.push_back(str);
+        return ;
+    }
+    if(str[i]==sortedstr[i])
+        findMaxRec(str,sortedstr,i+1,n,k,v);
+    else{
+        char ch=sortedstr[i];
+        int j=i;
+        for(j=i;j<n;j++){
+            if(str[j]==ch){
+                swap(str[i],str[j]);
+                findMaxRec(str,sortedstr,i+1,n,k-1,v);
+                swap(str[i],str[j]);
+            }
+        }
+    }
+}
+string findMaximumNum(string str, int k)
+{
+   // code here.
+   string sortedstr=str;
+   vector<string>v;
+   sort(sortedstr.begin(),sortedstr.end());
+   reverse(sortedstr.begin(),sortedstr.end());
+   findMaxRec(str,sortedstr,0,str.length(),k,v);
+   sort(v.begin(),v.end());
+   return v[v.size()-1];
+}
