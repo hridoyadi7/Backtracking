@@ -1,0 +1,42 @@
+https://practice.geeksforgeeks.org/problems/subsets-1587115621/1/?category[]=Backtracking&category[]=Backtracking&page=1&query=category[]Backtrackingpage1category[]Backtracking
+
+void subsetsRec(vector<string>&ans,string str,string mys,unordered_set<string>&s,int count)
+{
+    if(count==str.length())
+    {
+        if(s.find(mys)==s.end())
+        {
+            s.insert(mys);
+            ans.push_back(mys);
+        }
+        return ;
+    }
+    subsetsRec(ans,str,mys,s,count+1);
+    subsetsRec(ans,str,mys+str[count],s,count+1);
+}
+
+vector<vector<int> > AllSubsets(vector<int> A, int n)
+{
+    // code here 
+    string str="";
+    vector<string>ans;
+    sort(A.begin(),A.end());
+    for(int i=0;i<n;i++)
+        str+=to_string(A[i]);
+    unordered_set<string>s;
+    subsetsRec(ans,str,"",s,0);
+    sort(ans.begin(),ans.end());
+    vector<vector<int>>myAns;
+    for(int i=0;i<ans.size();i++)
+    {
+        vector<int>v;
+        string s1=ans[i];
+        for(int j=0;j<s1.length();j++)
+        {
+            int a=s1[j]-'0';
+            v.push_back(a);
+        }
+        myAns.push_back(v);
+    }
+    return myAns;
+}
